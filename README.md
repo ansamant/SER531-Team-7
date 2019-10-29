@@ -1,8 +1,8 @@
 # SER531-Team-7
 Team members:
-Aditya Samant
-Alsha Samantaray
-Lehar Bhatt
+Aditya Samant,
+Alsha Samantaray,
+Lehar Bhatt,
 Sakshi Chaudhary
 
 # Code Files
