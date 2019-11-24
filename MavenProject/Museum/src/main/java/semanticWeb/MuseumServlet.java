@@ -23,8 +23,10 @@ public class MuseumServlet extends HttpServlet {
 	      PrintWriter out = response.getWriter();
 	      
 	      HttpSession session = request.getSession();
+	      String latitude = request.getAttribute("latitude").toString();
+	      String longitude = request.getAttribute("longitude").toString();
 	      MuseumHelper helper = new MuseumHelper();
-	      ArtworkDetails details = helper.getDetails();
+	      ArtworkDetails details = helper.getDetails(latitude, longitude);
 	      session.setAttribute("details", details);
 
 	      out.println("<h1>" + session.getAttribute("details") + "</h1>");

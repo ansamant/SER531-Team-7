@@ -26,14 +26,15 @@ public class MuseumHelper {
 	
 	static String service1Endpoint = "http://ec2-3-14-9-68.us-east-2.compute.amazonaws.com:3030/Location/";
 
-	static String strQuery1 = "\n" +
+	public String createQuery(String latitude, String longitude) {
+		String str = "\n" +
 			"PREFIX artwork: <http://www.semanticweb.org/leharbhatt/ontologies/2019/9/Artwork#>\n"+
 				"PREFIX artist: <http://www.semanticweb.org/leharbhatt/ontologies/2019/9/artist#>\n"+
 				"prefix location: <http://www.semanticweb.org/leharbhatt/ontologies/2019/9/location#>\n"+
 
 				"SELECT *  WHERE {\n"+
-				        "?subject location:OWLDataProperty_67fd5e2e_4179_4fd7_aef7_d8a39337bdf0 '40.78044586';\n"+
-				                 "location:OWLDataProperty_de57441b_abfb_4133_bb3d_facc47fd90e8 '-73.96331672';\n"+
+				        "?subject location:OWLDataProperty_67fd5e2e_4179_4fd7_aef7_d8a39337bdf0 '"+latitude+"';\n"+
+				                 "location:OWLDataProperty_de57441b_abfb_4133_bb3d_facc47fd90e8 '"+longitude+"';\n"+
 				                 "location:OWLDataProperty_67031aff_da2d_4ea3_a6d2_e88390760b12 ?locationArtworkID.\n"+
 				  		  "SERVICE <http://ec2-18-222-129-224.us-east-2.compute.amazonaws.com:3030/Artwork>{\n"+
 				    		"SELECT * WHERE{\n"+
@@ -65,21 +66,24 @@ public class MuseumHelper {
 
 				"}\n"+
 				"LIMIT 1";
-
+		return str;
+	}
 	
 //	public static void main(String[] args) throws IOException {
 //		MuseumHelper hello = new MuseumHelper();
-//		StringBuilder sb = new StringBuilder();  
-//		
-//		sb.append(strQuery1);
-//		hello.loadArtwork(service1Endpoint, sb.toString());
+//		StringBuilder sb = new StringBuilder();
+//		String query = hello.createQuery("40.78044586", "-73.96331672");
+//		sb.append(query);
+//		ArtworkDetails details = hello.loadArtwork(service1Endpoint, sb.toString());
+//		//return details;
 //	}
 	
 	
-	public ArtworkDetails getDetails() {
+	public ArtworkDetails getDetails(String lat, String lon) {
 		MuseumHelper hello = new MuseumHelper();
-		StringBuilder sb = new StringBuilder();  
-		sb.append(strQuery1);
+		StringBuilder sb = new StringBuilder();
+		String query = createQuery(lat, lon);
+		sb.append(query);
 		ArtworkDetails details = hello.loadArtwork(service1Endpoint, sb.toString());
 		return details;
 	}
