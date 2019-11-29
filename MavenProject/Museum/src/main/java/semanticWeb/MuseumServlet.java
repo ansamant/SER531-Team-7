@@ -28,8 +28,8 @@ public class MuseumServlet extends HttpServlet {
 	      MuseumHelper helper = new MuseumHelper();
 	      ArtworkDetails details = helper.getDetails(latitude, longitude);
 	      session.setAttribute("details", details);
-
-	      out.println("<h1>" + session.getAttribute("details") + "</h1>");
+		  
+	      //out.println("<h1>" + session.getAttribute("details") + "</h1>");
 	   }
 	
 }
